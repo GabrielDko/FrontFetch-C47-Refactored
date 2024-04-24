@@ -35,9 +35,8 @@ window.onload = async () => {
     encabezado.appendChild(enlaces)
     console.log(movieAdd);
     
-    // Obtener las películas favoritas del localStorage
     let favoriteMovies = localStorage.getItem('favoriteMovies');
-    // Verificar si hay películas favoritas en el localStorage
+
     favoriteMovies = favoriteMovies ? JSON.parse(favoriteMovies) : {};
     
     data.forEach((movie) => {
@@ -45,7 +44,6 @@ window.onload = async () => {
       card.style.cursor  = 'pointer';
       card.setAttribute("class", "card");
 
-      // Redirigir al usuario al detalle de la película cuando haga clic en la tarjeta
       card.addEventListener('click', () => {
         window.location.href = `formulario.html?id=${movie.id}`;
       });
@@ -62,6 +60,8 @@ window.onload = async () => {
       const favorito = document.createElement('i');
       favorito.id = movie.id;
 
+      
+      {}
       if (favoriteMovies[movie.id]) {
         favorito.classList.add('fa-solid');
         favorito.classList.add('fa-star');
@@ -71,7 +71,6 @@ window.onload = async () => {
       }
 
       favorito.addEventListener('click', (e) => {
-        // Stop Propagation sirve para que al usuario hacer click en la tarjeta no se active el evento de click que redirecciona al usuario.
         e.stopPropagation();
         e.preventDefault();
 

@@ -8,19 +8,19 @@ window.onload = async () => {
     const response = await fetch('http://localhost:3031/api/movies');
     const peliculas = await response.json();
 
-    // Obtiene las películas favoritas del local Storage
+    
     let favoriteMovies = localStorage.getItem('favoriteMovies');
-    // Verifica si existen favoritas en el local Storage
+    
     favoriteMovies = favoriteMovies ? JSON.parse(favoriteMovies) : {};
 
     const data = peliculas.data;
 
-    let moviesFound = false; // Variable para verificar si se encontraron películas favoritas
+    let moviesFound = false;
 
     Object.keys(favoriteMovies).forEach((movieId) => {
       const movie = data.find((movie) => movie.id === parseInt(movieId));
       if (movie) {
-        moviesFound = true; // Si se encuentra al menos una película favorita, establece la bandera en true
+        moviesFound = true;
 
         const card = document.createElement("div");
         card.style.cursor = 'pointer';
@@ -51,9 +51,8 @@ window.onload = async () => {
         }
 
         favorito.addEventListener('click', (e) => {
-          // Stop Propagation sirve para que al usuario hacer click en la tarjeta no se active el evento de click que redirecciona al usuario.
+          
           e.stopPropagation();
-          e.preventDefault();
 
           if (favoriteMovies[movie.id]) {
             delete favoriteMovies[movie.id];
@@ -81,7 +80,7 @@ window.onload = async () => {
       }
     });
 
-    // Mostrando mensaje al usuario si no se encuentran peliculas :D
+    // Mostrando mensaje al usuario si no se encuentran peliculas :DDDDDDDDDDDDDDDDD
     if (!moviesFound) {
       const noMovies = document.createElement('h2');
       noMovies.innerText = 'No tienes películas favoritas.'
